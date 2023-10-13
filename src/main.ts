@@ -62,9 +62,11 @@ async function run(): Promise<void> {
       messageToPost =
         'No changes to code coverage between the base branch and the head branch'
     } else {
+      messageToPost += '<details><summary>Click to show details</summary>\n\n'
       messageToPost +=
         'Status | File | % Stmts | % Branch | % Funcs | % Lines \n -----|-----|---------|----------|---------|------ \n'
       messageToPost += coverageDetails.join('\n')
+      messageToPost += '\n</details>'
     }
     messageToPost = `${commentIdentifier}\nCommit SHA:${commitSha}\n${messageToPost}`
     if (useSameComment) {
